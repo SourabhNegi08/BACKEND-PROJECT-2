@@ -24,14 +24,14 @@ const userSchema = new mongoose.Schema({
     timestamps: true, // Automatically add createdAt and updatedAt timestamps
 });
 
-userSchema.pre('save' , async function (next) {     // ye password ko hash mein convert kardege save hone se pehla
+userSchema.pre('save' , async function () {     // ye password ko hash mein convert kardege save hone se pehla
     if(!this.isModified('password')) {
-        return next();
+        return ;
     }
     const hash = await bcrypt.hash(this.password, 10);
     this.password = hash;
 
-    return next();
+    return ;
 })
 
 userSchema.methods.comparePassword = async function (password){   //ye agar pass true hai to true return karega nahi to false return karega
