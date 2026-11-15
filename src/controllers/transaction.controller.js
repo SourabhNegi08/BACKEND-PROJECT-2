@@ -159,7 +159,6 @@ async function createInitialFundTransaction(req , res){
     }
 
     const fromUserAccount = await accountmodel.findOne({
-        systemuser : true,
         user: req.user._id
     })
 
@@ -169,7 +168,7 @@ async function createInitialFundTransaction(req , res){
         })
     }
 
-    const session = new mongoose.startSession();
+    const session = await mongoose.startSession();
     session.startTransaction();
 
     const transaction = new transactionmodel({

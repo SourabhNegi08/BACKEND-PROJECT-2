@@ -98,4 +98,4 @@ async function userLogoutController(req , res){
 }
 
 
-module.exports = { userRegisterController, userLoginController };
+module.exports = { userRegisterController, userLoginController , userLogoutController };
